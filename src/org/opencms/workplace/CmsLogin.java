@@ -1070,9 +1070,10 @@ public class CmsLogin extends CmsJspLoginBean {
             html.append("<form style=\"margin: 0px; padding: 0px;\" action=\"");
             html.append(getFormLink());
             html.append("\"");
-            if (PCTYPE_PUBLIC.equals(m_pcType)) {
+            // FIX Security Vulnerability - Force all login forms to autocomplete="off".
+            // if (PCTYPE_PUBLIC.equals(m_pcType)) {
                 html.append(" autocomplete=\"off\"");
-            }
+            // }
             appendId(html, PARAM_FORM);
             html.append("method=\"POST\">\n");
         }
@@ -1156,9 +1157,10 @@ public class CmsLogin extends CmsJspLoginBean {
         if (m_action == ACTION_DISPLAY) {
             // append input for user name
             html.append("<input style=\"width: 300px;\" type=\"text\"");
-            if (PCTYPE_PUBLIC.equals(m_pcType)) {
+            // FIX Security Vulnerability - Force all login forms to autocomplete="off".
+            // if (PCTYPE_PUBLIC.equals(m_pcType)) {
                 html.append(" autocomplete=\"off\"");
-            }
+            // }
             appendId(html, PARAM_USERNAME);
             html.append("value=\"");
             html.append((CmsStringUtil.isEmpty(m_username) || PCTYPE_PUBLIC.equals(m_pcType))
@@ -1181,9 +1183,10 @@ public class CmsLogin extends CmsJspLoginBean {
             html.append("</b>&nbsp;&nbsp;</td>\n");
             html.append("<td style=\"width: 300px; white-space: nowrap;\">");
             html.append("<input style=\"width: 300px;\" type=\"password\"");
-            if (PCTYPE_PUBLIC.equals(m_pcType)) {
+            // FIX Security Vulnerability - Force all login forms to autocomplete="off".
+            // if (PCTYPE_PUBLIC.equals(m_pcType)) {
                 html.append(" autocomplete=\"off\"");
-            }
+            // }
             appendId(html, PARAM_PASSWORD);
             html.append(">");
             html.append("</td>\n");
