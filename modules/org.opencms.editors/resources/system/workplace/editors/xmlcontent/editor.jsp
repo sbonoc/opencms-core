@@ -8,12 +8,14 @@
 	CmsEditorFrameset wp = new CmsEditorFrameset(cms);
 	
 	String params = wp.allParamsAsRequest();
+	// FIX Security Vulnerability - XSS - Solution: Escape all parameters/values with "<c:out value="${*}"/>".
+	pageContext.setAttribute("wp", wp);
 
  %><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
 <html>
 <head>
 <meta http-equiv="content-type" content="text/html; charset=<%= wp.getEncoding() %>">
-<title>(<%= cms.getRequestContext().currentUser().getName() %>) - <%= wp.getParamResource() %></title>
+<title>(<%= cms.getRequestContext().currentUser().getName() %>) - <c:out value="${wp.paramResource}" /></title>
 <script type="text/javascript">
 
 // stores the scroll target y coordinate when adding/removing or moving an element in the input form

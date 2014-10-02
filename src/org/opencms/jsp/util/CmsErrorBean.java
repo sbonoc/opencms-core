@@ -41,6 +41,7 @@ import org.opencms.main.I_CmsThrowable;
 import org.opencms.main.OpenCms;
 import org.opencms.util.CmsMacroResolver;
 import org.opencms.util.CmsStringUtil;
+import org.opencms.util.CmsStringEscapeUtil;
 
 /**
  * Class to display the error dialog.<p>
@@ -238,7 +239,8 @@ public class CmsErrorBean {
         if (CmsStringUtil.isEmpty(m_title)) {
             m_title = m_messages.key(Messages.GUI_ERROR_0, new Object[] {});
         }
-        resolver.addMacro("title", m_title);
+        // FIX Security Vulnerability - XSS - Solution: Escape all parameters/values.
+        resolver.addMacro("title", CmsStringEscapeUtil.forHTML(m_title));
         resolver.addMacro("label_error", m_messages.key(Messages.GUI_ERROR_0, new Object[] {}));
         resolver.addMacro("errorstack", CmsException.getFormattedErrorstack(m_throwable));
         resolver.addMacro("message", CmsStringUtil.escapeHtml(getErrorMessage()));

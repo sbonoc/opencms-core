@@ -38,6 +38,7 @@ import org.opencms.main.OpenCms;
 import org.opencms.security.CmsPermissionSet;
 import org.opencms.util.CmsRequestUtil;
 import org.opencms.util.CmsStringUtil;
+import org.opencms.util.CmsStringEscapeUtil;
 import org.opencms.workplace.commons.CmsLock;
 import org.opencms.workplace.editors.CmsPreEditorAction;
 import org.opencms.workplace.tools.CmsToolDialog;
@@ -875,8 +876,8 @@ public class CmsDialog extends CmsToolDialog {
      * @return the HTML title String for the dialog window
      */
     public String dialogHead(String title) {
-
-        return "<div class=\"dialoghead\" unselectable=\"on\">" + (title == null ? "" : title) + "</div>";
+    	// FIX Security Vulnerability - XSS - Solution: Escape the title which comes from a parameter in the HTTP request.
+    	return "<div class=\"dialoghead\" unselectable=\"on\">" + (title == null ? "" : CmsStringEscapeUtil.forHTML(title)) + "</div>";
     }
 
     /**
