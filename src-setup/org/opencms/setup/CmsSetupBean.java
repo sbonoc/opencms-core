@@ -2083,10 +2083,24 @@ public class CmsSetupBean implements I_CmsShellCommands {
                     || provider.equals(DB2_PROVIDER)
                     || provider.equals(MSSQL_PROVIDER)
                     || provider.equals(POSTGRESQL_PROVIDER)) {
-                    if (!conStr.endsWith("/")) {
-                        conStr += "/";
+                    
+                    /**
+                     * jdbc:jtds:sqlserver://WHVSQLA7:1435;instanceName=SQLVNBED5
+                     */
+                    String[] splitted = conStr.split(";");
+                    if (splitted.length > 1) {
+                        conStr = splitted[0] + "/" + database;
+                        for (int i = 1; i < splitted.length; i++) {
+                            conStr += ";" + splitted[i];
+                        }
                     }
-                    conStr += database;
+                    else {
+                        if (!conStr.endsWith("/")) {
+                            conStr += "/";
+                        }
+                        conStr += database;
+                    }
+                    
                 } else if (provider.equals(AS400_PROVIDER)) {
                     if (conStr.endsWith("/")) {
                         conStr = conStr.substring(0, conStr.length() - 1);
