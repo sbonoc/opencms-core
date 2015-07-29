@@ -714,8 +714,8 @@ tinyMCE.init({
     cmsGalleryEnhancedOptions : <%= options.showElement("gallery.enhancedoptions", displayOptions)%>,
     cmsGalleryUseThickbox : <%= options.showElement("gallery.usethickbox", displayOptions)%>,
     language : "<%= wp.getLocale().getLanguage() %>",
-	relative_urls: false,
-    remove_script_host: false,
+	relative_urls: true,
+    remove_script_host: true,
 
     // Example content CSS (should be your site CSS)
     content_css : "<cms:link><%= wp.getUriStyleSheet() %></cms:link>",

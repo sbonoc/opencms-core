@@ -183,7 +183,7 @@ function checkContext(linkUrl, add) {
 		if (add) {
 			if (linkUrl.charAt(0) == "/" && linkUrl.indexOf(linkEditorPrefix) != 0) {
 				// add the context path to the link when closing the dialog
-				return linkEditorPrefix + linkUrl;
+				return linkUrl;
 			}
 		} else if (linkUrl.indexOf(linkEditorPrefix) == 0) {
 			// remove the context path from the link when opening the window
