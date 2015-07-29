@@ -33,6 +33,7 @@ import java.util.Properties;
 import org.opencms.db.CmsUserSettings;
 import org.opencms.file.CmsObject;
 import org.opencms.file.CmsUser;
+import org.opencms.i18n.CmsEncoder;
 import org.opencms.i18n.CmsMessages;
 import org.opencms.main.CmsException;
 import org.opencms.main.CmsLog;
@@ -238,7 +239,7 @@ public class CmsErrorBean {
         if (CmsStringUtil.isEmpty(m_title)) {
             m_title = m_messages.key(Messages.GUI_ERROR_0, new Object[] {});
         }
-        resolver.addMacro("title", m_title);
+        resolver.addMacro("title", CmsEncoder.escapeXml(m_title));
         resolver.addMacro("label_error", m_messages.key(Messages.GUI_ERROR_0, new Object[] {}));
         resolver.addMacro("errorstack", CmsException.getFormattedErrorstack(m_throwable));
         resolver.addMacro("message", CmsStringUtil.escapeHtml(getErrorMessage()));
