@@ -339,6 +339,10 @@ function htmlGalleryDialogUrl() {
 window.createLink = createLink; 
 
 tinymce.create('tinymce.opencms', {
+	
+	ed.settings.relative_urls = false;
+	ed.settings.remove_script_host = true;
+	
    init : function(ed, url) {
       
       // periodically check if we are in fullscreen mode and the content has changed.
