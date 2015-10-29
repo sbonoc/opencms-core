@@ -185,6 +185,9 @@ function setImageLink(path, attributes, linkPath, target){
  * @return void
  */
 function setLink(path, title, target){
+	if(path && path.indexOf('/opencms/opencms') == -1) {
+		path = '/opencms/opencms' + path;
+	}
    _setValue(path);
 }
 
